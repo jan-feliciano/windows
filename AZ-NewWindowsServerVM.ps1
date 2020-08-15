@@ -41,7 +41,7 @@ $azureVnetSubnet = (Get-AzVirtualNetwork -Name $azureVnetName -ResourceGroupName
 $azurePublicIp = New-AzPublicIpAddress -Name $azurePublicIpName -ResourceGroupName $azureResourceGroup -Location $azureLocation -AllocationMethod Dynamic
  
 #Create the NSG and rules.
-$RuleConfig = New-AzNetworkSecurityRuleConfig -Name RuleRDP -Protocol Tcp -Direction Inbound -Priority 300 -SourceAddressPrefix "2.49.112.48" -SourcePortRange * -DestinationAddressPrefix * -DestinationPortRange 3389 -Access Allow
+$RuleConfig = New-AzNetworkSecurityRuleConfig -Name RuleRDP -Protocol Tcp -Direction Inbound -Priority 300 -SourceAddressPrefix * -SourcePortRange * -DestinationAddressPrefix * -DestinationPortRange 3389 -Access Allow
 $NSG = New-AzNetworkSecurityGroup -ResourceGroupName $azureResourceGroup -Location $azureLocation -Name $azureNSG -SecurityRules $RuleConfig
 
 #Create the NIC and associate the public IP address and NSG.
